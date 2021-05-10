@@ -5,6 +5,7 @@ const typeDefs = gql`
     title: String!
     details: String!
     date: String
+    category: String!
     id: ID!
   }
   type Token {

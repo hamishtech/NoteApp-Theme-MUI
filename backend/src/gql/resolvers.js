@@ -66,6 +66,7 @@ const resolvers = {
       return response;
     },
     login: async (root, args) => {
+      console.log('login recieved');
       try {
         const user = await User.findOne({ username: args.username });
         if (!user) {
