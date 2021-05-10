@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   username: String,
-  passwordHash: String,
+  password  : String,
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,

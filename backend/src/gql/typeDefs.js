@@ -7,10 +7,13 @@ const typeDefs = gql`
     date: String
     id: ID!
   }
+  type Token {
+    token: String
+  }
   type User {
     id: ID!
     username: String!
-    passwordHash: String!
+    password: String!
     notes: [Note]
   }
   type Query {
@@ -22,9 +25,10 @@ const typeDefs = gql`
     createNote(title: String, details: String): Note
     deleteNote(id: String): [String]
     createUser(username: String, password: String): User
+    login(username: String, password: String): Token
   }
 `;
 
-//need to add updatenote mutation
+//need to add update note mutation
 
 module.exports = typeDefs;
