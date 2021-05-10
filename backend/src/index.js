@@ -3,7 +3,6 @@ const typeDefs = require('./gql/typeDefs');
 const resolvers = require('./gql/resolvers');
 const connect_DB = require('./database');
 const jwt = require('jsonwebtoken');
-const User = require('./database/schema/userSchema');
 require('dotenv').config();
 
 const server = new ApolloServer({
@@ -16,7 +15,7 @@ const server = new ApolloServer({
       }
       const rawToken = req.headers.authorization || '';
       const token = rawToken.substring(7);
-      const user = await jwt.verify(token, process.env.SECRET);
+      const user = jwt.verify(token, process.env.SECRET);
       return { user };
     } catch (error) {
       return;

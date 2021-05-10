@@ -23,10 +23,6 @@ const resolvers = {
       const userNotes = await User.findById(context.user.id).populate('notes');
       return userNotes.notes;
     },
-    ///USER
-    getUser: () => {
-      null;
-    },
   },
   Mutation: {
     createNote: async (root, args, context) => {
@@ -43,6 +39,20 @@ const resolvers = {
         const savedUser = await user.save();
         const request = await note.save();
         return request;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    deleteNote: async (root, args, context) => {
+      try {
+        if (!context.user) {
+          throw new AuthenticationError(
+            'need to be logged in to delete a note'
+          );
+        }
+        //USER-need Note add it to User-notes-array
+        const request = await User.findByIdAndDelete(args.id);
+        return;
       } catch (error) {
         console.log(error);
       }

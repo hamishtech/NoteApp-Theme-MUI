@@ -18,7 +18,6 @@ const typeDefs = gql`
   }
   type Query {
     allNotes: [Note!]!
-    getUser: User!
     getNotes: [Note!]
   }
   type Mutation {
