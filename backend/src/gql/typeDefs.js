@@ -9,7 +9,7 @@ const typeDefs = gql`
   }
   type User {
     id: ID!
-    name: String!
+    username: String!
     passwordHash: String!
     notes: [Note]
   }
@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Mutation {
     createNote(title: String, details: String): Note
     deleteNote(id: String): [String]
+    createUser(username: String, password: String): User
   }
 `;
 

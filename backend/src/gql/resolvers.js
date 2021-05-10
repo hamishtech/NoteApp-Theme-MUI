@@ -3,16 +3,18 @@ const User = require('../database/schema/userSchema');
 
 const resolvers = {
   Query: {
-    allNotes: () => null,
+    allNotes: async () => {
+      return Note.find();
+    },
     getUser: () => {
       null;
     },
-    getNotes: () => {},
+    getNotes: (root, args) => {},
   },
   Mutation: {
     createNote: async (root, args) => {
       try {
-        //USER-need to Note add it to User-notes-array
+        //USER-need Note add it to User-notes-array
         console.log(args);
         const note = new Note({ ...args });
         const request = await note.save();
@@ -20,6 +22,11 @@ const resolvers = {
       } catch (error) {
         console.log(error);
       }
+    },
+    createUser: async (root, args) => {
+      const user = new User({ ...args });
+      const response = await user.save();
+      return user;
     },
   },
 };
