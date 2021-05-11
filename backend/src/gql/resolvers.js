@@ -28,6 +28,7 @@ const resolvers = {
         throw new ForbiddenError('Authentication error: cannot access user');
       }
       const user = await User.findById(context.user.id).populate('notes');
+      console.log(user);
       return user;
     },
   },
@@ -69,8 +70,14 @@ const resolvers = {
       const hash = await bcrypt.hash(args.password, 10);
       args = { ...args, password: hash };
       const user = new User({ ...args });
+      const tokenInput = {
+        username: user.username,
+        password: user.password,
+        id: user._id.toString(),
+      };
+      const token = jwt.sign(tokenInput, process.env.SECRET);
       const response = await user.save();
-      return response;
+      return { token };
     },
     login: async (root, args) => {
       console.log('login recieved');

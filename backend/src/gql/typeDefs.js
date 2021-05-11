@@ -23,9 +23,9 @@ const typeDefs = gql`
     getUser: User
   }
   type Mutation {
-    createNote(title: String, details: String): Note
+    createNote(title: String, details: String, category: String): Note
     deleteNote(id: String): [String]
-    createUser(username: String, password: String): User
+    createUser(username: String, password: String): Token
     login(username: String, password: String): Token
   }
 `;
