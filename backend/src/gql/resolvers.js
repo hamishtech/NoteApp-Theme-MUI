@@ -13,7 +13,6 @@ require('dotenv').config();
 const resolvers = {
   Query: {
     allNotes: async (root, args, context) => {
-      console.log(context.user);
       return Note.find();
     },
     getNotes: async (root, args, context) => {
@@ -28,7 +27,6 @@ const resolvers = {
         throw new ForbiddenError('Authentication error: cannot access user');
       }
       const user = await User.findById(context.user.id).populate('notes');
-      console.log(user);
       return user;
     },
   },
