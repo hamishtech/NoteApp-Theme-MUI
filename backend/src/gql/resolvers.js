@@ -23,6 +23,13 @@ const resolvers = {
       const userNotes = await User.findById(context.user.id).populate('notes');
       return userNotes.notes;
     },
+    getUser: async (root, args, context) => {
+      if (!context.user || context.error) {
+        throw new ForbiddenError('Authentication error: cannot access user');
+      }
+      const user = await User.findById(context.user.id).populate('notes');
+      return user;
+    },
   },
   Mutation: {
     createNote: async (root, args, context) => {

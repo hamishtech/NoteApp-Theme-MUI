@@ -18,7 +18,7 @@ const server = new ApolloServer({
       const user = jwt.verify(token, process.env.SECRET);
       return { user };
     } catch (error) {
-      return;
+      return { error: 'could not validate user' };
     }
   },
 });

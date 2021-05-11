@@ -20,6 +20,7 @@ const typeDefs = gql`
   type Query {
     allNotes: [Note!]!
     getNotes: [Note!]
+    getUser: User
   }
   type Mutation {
     createNote(title: String, details: String): Note
