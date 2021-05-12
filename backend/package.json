@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": " nodemon ./src/index.js",
-    "start":"node ./src/index.js",
-    "build":
+    "start": "node ./src/index.js"
   },
   "author": "HB-Tech",
   "license": "ISC",
