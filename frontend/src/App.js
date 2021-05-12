@@ -48,7 +48,6 @@ function App() {
           </Route>
           <Layout>
             <Route path='/create'>
-              <Create />
               {user || window.localStorage.getItem('tokenValue') ? (
                 <Create />
               ) : (
@@ -56,7 +55,6 @@ function App() {
               )}
             </Route>
             <Route exact path='/notes'>
-              <Notes />
               {user || window.localStorage.getItem('tokenValue') ? (
                 <Notes />
               ) : (

@@ -15,7 +15,6 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../gql/mutations';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../state/userContext';
-import { useApolloClient } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -130,7 +129,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify='flex-end'>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link href='/login' variant='body2'>
                 Already have an account? Sign in
               </Link>
             </Grid>
