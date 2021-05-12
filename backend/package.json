@@ -1,0 +1,20 @@
+{
+  "name": "note-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": " nodemon ./src/index.js"
+  },
+  "author": "HB-Tech",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.24.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^9.0.1",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7"
+  }
+}
