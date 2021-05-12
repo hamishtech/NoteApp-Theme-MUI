@@ -33,7 +33,15 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: '/graphql' });
 
 app.use(cors());
+// serve static assets normally
+
+// handle every other route with index.html, which will contain
+// a script tag to your application's JavaScript file(s).
+
 app.use(static('build'));
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 app.get('/health', (req, res) => {
   res.send('ok');
 });
