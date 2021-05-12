@@ -85,6 +85,12 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (password.length <= 3 || username.length <= 3) {
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+      }, 5000);
+    }
     login({ variables: { password, username } });
   };
 
@@ -115,6 +121,7 @@ export default function SignIn() {
               variant='outlined'
               margin='normal'
               required
+              error={open}
               fullWidth
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -129,6 +136,7 @@ export default function SignIn() {
               variant='outlined'
               margin='normal'
               required
+              error={open}
               fullWidth
               onChange={(e) => {
                 setPassword(e.target.value);

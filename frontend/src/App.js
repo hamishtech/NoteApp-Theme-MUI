@@ -13,6 +13,8 @@ import HomePage from './pages/HomePage';
 import SignIn from './pages/Login';
 import Notes from './pages/Notes';
 import SignUp from './pages/SignUp';
+import Page404 from './pages/Page404';
+
 import { UserContext } from './state/userContext';
 
 const theme = createMuiTheme({
@@ -46,22 +48,27 @@ function App() {
           <Route exact path='/'>
             <HomePage />
           </Route>
-          <Layout>
-            <Route path='/create'>
+          <Route path='/create'>
+            <Layout>
               {user || window.localStorage.getItem('tokenValue') ? (
                 <Create />
               ) : (
                 <Redirect to='/login' />
               )}
-            </Route>
-            <Route exact path='/notes'>
+            </Layout>
+          </Route>
+          <Route path='/notes'>
+            <Layout>
               {user || window.localStorage.getItem('tokenValue') ? (
                 <Notes />
               ) : (
                 <Redirect to='/login' />
               )}
-            </Route>
-          </Layout>
+            </Layout>
+          </Route>
+          <Route>
+            <Page404 />
+          </Route>
         </Switch>
       </Router>
     </ThemeProvider>

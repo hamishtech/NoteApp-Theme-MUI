@@ -15,6 +15,9 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../gql/mutations';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../state/userContext';
+import { Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import { set } from 'date-fns/esm';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,16 +43,18 @@ export default function SignUp() {
   const classes = useStyles();
   const [createUser, result] = useMutation(CREATE_USER);
   const [username, setUsername] = useState('');
+  const [open, setOpen] = useState(false);
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const [userContext, refetch] = useContext(UserContext);
+  const [_, refetch] = useContext(UserContext);
 
   console.log(window.localStorage.getItem('tokenValue'));
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (username === '' || password === '') {
+      if (username.length <= 3 || password.length <= 3) {
+        setOpen(true);
         return;
       }
       createUser({ variables: { username, password } });
@@ -60,7 +65,9 @@ export default function SignUp() {
     if (result.data) {
       window.localStorage.setItem('tokenValue', result.data.createUser.token);
       refetch();
-      history.push('/notes');
+      setTimeout(() => {
+        history.push('/notes');
+      }, 1000);
     }
   }, [result.data, history]);
 
@@ -86,6 +93,7 @@ export default function SignUp() {
                   setUsername(target.value);
                 }}
                 fullWidth
+                error={open}
                 id='userName'
                 label='Username'
                 autoFocus
@@ -94,7 +102,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
-                required
+                error={open}
                 fullWidth
                 id='email'
                 label='Email Address'
@@ -106,6 +114,7 @@ export default function SignUp() {
               <TextField
                 variant='outlined'
                 required
+                error={open}
                 fullWidth
                 onChange={({ target }) => {
                   setPassword(target.value);
@@ -136,6 +145,17 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
+        <Alert severity='error'>
+          Include more than 3 characters for both your username and password
+        </Alert>
+      </Snackbar>
       <Box mt={5}>
         <Copyright />
       </Box>
