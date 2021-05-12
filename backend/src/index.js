@@ -33,7 +33,7 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: '/graphql' });
 
 app.use(cors());
-app.use(static(path.join(__dirname, '../../frontend/build')));
+app.use(static('build'));
 app.get('/health', (req, res) => {
   res.send('ok');
 });
