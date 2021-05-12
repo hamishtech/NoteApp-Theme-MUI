@@ -46,9 +46,9 @@ const Layout = ({ children }) => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('tokenValue');
-    history.push('/login');
-    client.resetStore();
-    history.push('login');
+    client.clearStore();
+    history.push('/');
+    location.reload();
   };
 
   const sideBarList = [

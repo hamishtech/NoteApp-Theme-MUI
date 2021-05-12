@@ -1,5 +1,6 @@
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { green, indigo } from '@material-ui/core/colors';
+import { useContext } from 'react';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -12,6 +13,7 @@ import HomePage from './pages/HomePage';
 import SignIn from './pages/Login';
 import Notes from './pages/Notes';
 import SignUp from './pages/SignUp';
+import { UserContext } from './state/userContext';
 
 const theme = createMuiTheme({
   palette: {
@@ -30,7 +32,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  //   const [user, setUser] = useQuery(GET_USER)
+  const [user, refetch] = useContext(UserContext);
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -46,19 +48,11 @@ function App() {
           </Route>
           <Layout>
             <Route path='/create'>
-              {window.localStorage.getItem('tokenValue') ? (
-                <Create />
-              ) : (
-                <Redirect to='/login' />
-              )}
+              {user ? <Create /> : <Redirect to='/login' />}
             </Route>
             <Route exact path='/notes'>
               <Notes />
-              {/* {window.localStorage.getItem('tokenValue') ? (
-                <Notes />
-              ) : (
-                <Redirect to='/login' />
-              )} */}
+              {user ? <Notes /> : <Redirect to='/login' />}
             </Route>
           </Layout>
         </Switch>

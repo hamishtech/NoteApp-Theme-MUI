@@ -59,9 +59,9 @@ export default function SignUp() {
 
   useEffect(() => {
     if (result.data) {
-      console.log(result.data);
       window.localStorage.setItem('tokenValue', result.data.createUser.token);
       refetch();
+      history.push('/notes');
     }
   }, [result.data, history]);
 

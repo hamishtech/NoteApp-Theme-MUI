@@ -92,7 +92,9 @@ export default function SignIn() {
     if (result.data) {
       window.localStorage.setItem('tokenValue', result.data.login.token);
       refetch();
-      return history.push('/notes');
+      setTimeout(() => {
+        history.push('/notes');
+      }, 1000);
     }
   }, [result.data, history]);
 

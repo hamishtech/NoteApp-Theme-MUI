@@ -23,6 +23,7 @@ const resolvers = {
       return userNotes.notes;
     },
     getUser: async (root, args, context) => {
+      console.log('req');
       if (!context.user || context.error) {
         throw new ForbiddenError('Authentication error: cannot access user');
       }
