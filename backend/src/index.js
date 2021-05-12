@@ -15,7 +15,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req }) => {
-    console.log(req.headers.authorization);
     try {
       if (!req.headers.authorization) {
         return;

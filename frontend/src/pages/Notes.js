@@ -10,6 +10,8 @@ export default function Notes() {
   const [userContext, refetch] = useContext(UserContext);
   const history = useHistory();
 
+  console.log(userContext);
+
   return (
     <Container>
       {userContext ? (

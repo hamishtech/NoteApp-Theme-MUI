@@ -56,9 +56,9 @@ const resolvers = {
             'need to be logged in to delete a note'
           );
         }
-        //USER-need Note add it to User-notes-array
-        const request = await User.findByIdAndDelete(args.id);
-        return;
+
+        const request = await Note.findByIdAndDelete(args.id);
+        return request._id;
       } catch (error) {
         console.log(error);
       }

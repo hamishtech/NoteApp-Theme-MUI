@@ -1,2 +1,0 @@
-git subtree push --prefix backend heroku master 
-deploy backend

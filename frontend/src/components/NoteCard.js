@@ -10,6 +10,10 @@ import {
 } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
 import { green, pink, purple, yellow } from '@material-ui/core/colors';
+import { useMutation } from '@apollo/client';
+import { DELETE_NOTE } from '../gql/mutations';
+import { GET_USER } from '../gql/queries';
+import { useApolloClient } from '@apollo/client';
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -39,7 +43,16 @@ const useStyle = makeStyles((theme) => {
 });
 
 const NoteCard = ({ note }) => {
+  const client = useApolloClient();
+  const id = note.id;
+  const [deleteNote] = useMutation(DELETE_NOTE);
+  const handleDelete = () => {
+    deleteNote({ variables: { id: id } }).then(() => {
+      client.resetStore();
+    });
+  };
   const classes = useStyle(note);
+
   return (
     <div>
       <Card elevation={5} className={classes.note}>
@@ -50,7 +63,7 @@ const NoteCard = ({ note }) => {
             </Avatar>
           }
           action={
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               {' '}
               <DeleteOutlined />
             </IconButton>

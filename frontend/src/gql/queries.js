@@ -9,6 +9,7 @@ export const GET_USER = gql`
         details
         date
         category
+        id
       }
     }
   }
