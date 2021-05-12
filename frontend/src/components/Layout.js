@@ -42,13 +42,10 @@ const Layout = ({ children }) => {
   const [data, fetch] = useContext(UserContext);
   const client = useApolloClient();
 
-  console.log(data);
-
   const handleLogout = () => {
     window.localStorage.removeItem('tokenValue');
     client.clearStore();
     history.push('/');
-    location.reload();
   };
 
   const sideBarList = [

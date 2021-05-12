@@ -48,11 +48,20 @@ function App() {
           </Route>
           <Layout>
             <Route path='/create'>
-              {user ? <Create /> : <Redirect to='/login' />}
+              <Create />
+              {user || window.localStorage.getItem('tokenValue') ? (
+                <Create />
+              ) : (
+                <Redirect to='/login' />
+              )}
             </Route>
             <Route exact path='/notes'>
               <Notes />
-              {user ? <Notes /> : <Redirect to='/login' />}
+              {user || window.localStorage.getItem('tokenValue') ? (
+                <Notes />
+              ) : (
+                <Redirect to='/login' />
+              )}
             </Route>
           </Layout>
         </Switch>

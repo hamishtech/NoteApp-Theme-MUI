@@ -10,10 +10,6 @@ export default function Notes() {
   const [userContext, refetch] = useContext(UserContext);
   const history = useHistory();
 
-  if (!userContext) {
-    history.push('/login');
-  }
-
   return (
     <Container>
       {userContext ? (

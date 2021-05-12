@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": " nodemon ./src/index.js"
+    "dev": " nodemon ./src/index.js",
+    "start-prod":"node ./src/index.js"
   },
   "author": "HB-Tech",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.24.0",
+    "apollo-server-express": "^2.24.0",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^9.0.1",
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
