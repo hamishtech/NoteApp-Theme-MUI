@@ -27,6 +27,7 @@ const typeDefs = gql`
     deleteNote(id: String): String
     createUser(username: String, password: String): Token
     login(username: String, password: String): Token
+    editNote(title: String, details: String, category: String, id: ID): Note
   }
 `;
 

@@ -1,5 +1,5 @@
 import { CircularProgress, Container } from '@material-ui/core';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Masonry from 'react-masonry-css';
 import { useHistory } from 'react-router-dom';
 import NoteCard from '../components/NoteCard';

@@ -1,20 +1,18 @@
-import React, { useContext, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { useMutation } from '@apollo/client';
+import {
+    FormControl, FormControlLabel, FormLabel,
+    makeStyles,
+    Radio,
+    RadioGroup
+} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import {
-  FormControl,
-  FormLabel,
-  makeStyles,
-  Radio,
-  RadioGroup,
-} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import { FormControlLabel } from '@material-ui/core';
-import { useMutation } from '@apollo/client';
-import { CREATE_NOTE } from '../gql/mutations';
+import Typography from '@material-ui/core/Typography';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { CREATE_NOTE } from '../gql/mutations';
 import { UserContext } from '../state/userContext';
 
 const useStyles = makeStyles({

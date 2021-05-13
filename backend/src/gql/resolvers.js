@@ -49,6 +49,20 @@ const resolvers = {
         console.log(error);
       }
     },
+    editNote: async (root, args, context) => {
+      try {
+        if (!context.user) {
+          throw new AuthenticationError(
+            'need to be logged in to create a note'
+          );
+        }
+        const newNote = { ...args };
+        const request = await Note.findByIdAndUpdate(args.id, newNote);
+        return request;
+      } catch (error) {
+        console.log('could not update');
+      }
+    },
     deleteNote: async (root, args, context) => {
       try {
         if (!context.user) {

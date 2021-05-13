@@ -8,7 +8,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { green, pink, purple, yellow } from '@material-ui/core/colors';
+import { green, pink, purple, red, yellow } from '@material-ui/core/colors';
 import { DeleteOutlined } from '@material-ui/icons';
 import EditIcon from '@material-ui/icons/Edit';
 import React, { useState } from 'react';
@@ -34,6 +34,8 @@ const useStyle = makeStyles((theme) => {
             return green[500];
           case 'work':
             return pink[500];
+          case 'study':
+            return red[500];
           default:
             return purple[500];
         }
