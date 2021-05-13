@@ -22,7 +22,7 @@ const resolvers = {
       const userNotes = await User.findById(context.user.id).populate('notes');
       return userNotes.notes;
     },
-    getUser: async (root, args, context) => {
+    getUser: async (_, args, context) => {
       if (!context.user || context.error) {
         throw new ForbiddenError('Authentication error: cannot access user');
       }
