@@ -1,4 +1,4 @@
-import React from 'react';
+import { useApolloClient, useMutation } from '@apollo/client';
 import {
   Avatar,
   Card,
@@ -8,12 +8,12 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { DeleteOutlined } from '@material-ui/icons';
 import { green, pink, purple, yellow } from '@material-ui/core/colors';
-import { useMutation } from '@apollo/client';
+import { DeleteOutlined } from '@material-ui/icons';
+import EditIcon from '@material-ui/icons/Edit';
+import React, { useState } from 'react';
 import { DELETE_NOTE } from '../gql/mutations';
-import { GET_USER } from '../gql/queries';
-import { useApolloClient } from '@apollo/client';
+import EditDialog from './EditDialog';
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -52,6 +52,10 @@ const NoteCard = ({ note }) => {
     });
   };
   const classes = useStyle(note);
+  const [open, setOpen] = useState(false);
+  const reverseOpen = () => {
+    setOpen(!open);
+  };
 
   return (
     <div>
@@ -63,10 +67,14 @@ const NoteCard = ({ note }) => {
             </Avatar>
           }
           action={
-            <IconButton onClick={handleDelete}>
-              {' '}
-              <DeleteOutlined />
-            </IconButton>
+            <div>
+              <IconButton>
+                <DeleteOutlined onClick={handleDelete} />
+              </IconButton>
+              <IconButton>
+                <EditIcon onClick={reverseOpen} />
+              </IconButton>
+            </div>
           }
           title={note.title}
           subheader={note.category}
@@ -75,6 +83,7 @@ const NoteCard = ({ note }) => {
           <Typography variant='body1'> {note.details}</Typography>
         </CardContent>
       </Card>
+      <EditDialog open={open} reverseOpen={reverseOpen} note={note} />
     </div>
   );
 };
