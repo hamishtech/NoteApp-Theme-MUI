@@ -38,9 +38,9 @@ app.use(cors());
 // a script tag to your application's JavaScript file(s).
 
 app.use(static('build'));
-// app.get('*', function (request, response) {
-//   response.sendFile(path.join(__dirname, '../', 'build', 'index.html'));
-// });
+app.get('*', function (request, response) {
+  response.sendFile(path.join(__dirname, '../', 'build', 'index.html'));
+});
 app.get('/health', (req, res) => {
   res.send('ok');
 });
