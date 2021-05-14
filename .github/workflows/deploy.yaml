@@ -13,6 +13,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "noteapp-hbtech" #Must be unique in Heroku
-          heroku_email: "hamishcoding@gmail.com"
-          appdir: "backend" # <- This will point to the api folder in your project
+          heroku_app_name: 'noteapp-hbtech' #Must be unique in Heroku
+          heroku_email: '${{secrets.email}}'
+          appdir: 'backend' # <- This will point to the api folder in your project
